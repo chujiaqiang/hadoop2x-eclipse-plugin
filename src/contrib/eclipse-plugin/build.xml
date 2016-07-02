@@ -19,7 +19,7 @@
 
 <project default="jar" name="eclipse-plugin">
 
-  <import file="../build-contrib.xml"/>
+  <import file="build-contrib.xml"/>
 
   <path id="eclipse-sdk-jars">
     <fileset dir="${eclipse.home}/plugins/">
@@ -73,7 +73,8 @@
      includes="**/*.java"
      destdir="${build.classes}"
      debug="${javac.debug}"
-     deprecation="${javac.deprecation}">
+     deprecation="${javac.deprecation}"
+    	includeantruntime="false">
      <classpath refid="classpath"/>
     </javac>
   </target>
@@ -115,8 +116,11 @@
     <copy file="${hadoop.home}/share/hadoop/common/lib/commons-cli-${commons-cli.version}.jar"  todir="${build.dir}/lib" verbose="true"/>
     <copy file="${hadoop.home}/share/hadoop/common/lib/commons-configuration-${commons-configuration.version}.jar"  todir="${build.dir}/lib" verbose="true"/>
     <copy file="${hadoop.home}/share/hadoop/common/lib/commons-lang-${commons-lang.version}.jar"  todir="${build.dir}/lib" verbose="true"/>
-    <copy file="${hadoop.home}/share/hadoop/common/lib/commons-collections-${commons-collections.version}.jar"  todir="${build.dir}/lib" verbose="true"/>  
-    <copy file="${hadoop.home}/share/hadoop/common/lib/jackson-core-asl-${jackson.version}.jar"  todir="${build.dir}/lib" verbose="true"/>
+  	<copy file="${hadoop.home}/share/hadoop/common/lib/commons-httpclient-3.1.jar"  todir="${build.dir}/lib" verbose="true"/>
+  	<copy file="${hadoop.home}/share/hadoop/common/lib/commons-io-2.4.jar"  todir="${build.dir}/lib" verbose="true"/>
+  	<copy file="${hadoop.home}/share/hadoop/common/lib/servlet-api-2.5.jar"  todir="${build.dir}/lib" verbose="true"/>
+  	<copy file="${hadoop.home}/share/hadoop/common/lib/commons-collections-${commons-collections.version}.jar"  todir="${build.dir}/lib" verbose="true"/>  
+  	<copy file="${hadoop.home}/share/hadoop/common/lib/jackson-core-asl-${jackson.version}.jar"  todir="${build.dir}/lib" verbose="true"/>
     <copy file="${hadoop.home}/share/hadoop/common/lib/jackson-mapper-asl-${jackson.version}.jar"  todir="${build.dir}/lib" verbose="true"/>
     <copy file="${hadoop.home}/share/hadoop/common/lib/slf4j-log4j12-${slf4j-log4j12.version}.jar"  todir="${build.dir}/lib" verbose="true"/>
     <copy file="${hadoop.home}/share/hadoop/common/lib/slf4j-api-${slf4j-api.version}.jar"  todir="${build.dir}/lib" verbose="true"/>
@@ -157,6 +161,8 @@
       <!--fileset dir="${build.dir}" includes="*.xml"/-->
       <fileset dir="${root}" includes="resources/ plugin.xml"/>
     </jar>
+  	
+  	<copy file="${build.dir}/hadoop-${name}-${hadoop.version}.jar"  todir="${eclipse.home}/plugins" verbose="true"/>
   </target>
-
+	
 </project>
