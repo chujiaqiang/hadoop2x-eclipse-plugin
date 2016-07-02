@@ -19,8 +19,11 @@
 
 <project default="jar" name="eclipse-plugin">
 
-  <import file="build-contrib.xml"/>
+  <import file="../build-contrib.xml"/>
 
+  <property name="eclipse.home" location="/opt/eclipse"/>
+  <property name="hadoop.home" location="/opt/hadoop-2.6.2"/>
+	
   <path id="eclipse-sdk-jars">
     <fileset dir="${eclipse.home}/plugins/">
       <include name="org.eclipse.ui*.jar"/>
